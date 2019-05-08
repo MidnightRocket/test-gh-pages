@@ -1,0 +1,223 @@
+/
+* {
+  margin: 0;
+
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  padding: 10px;
+  background-color: #323643;
+  text-indent: 5%;
+  font-size: 40px;
+}
+footer {
+  background-color: #333;
+  text-align: center;
+  padding: 30px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  font-size: 18px;
+}
+
+li {
+  padding-left: 30px;
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #9933ff;
+}
+
+
+
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+.small {
+  width: 10%;
+  text-align: center;
+}
+
+.middle {
+  padding: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 0.4px;
+}
+input[type=text], input[type=number]{
+  width: 200px;
+  padding: 10px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+#MængdeberegningTabel {
+  border-radius: 15px;
+  border: 1px solid white; /* same as background or it do not work */
+  text-align: right;
+  color: #1a1a1a;
+  background-color: #f2f2f2;
+  border-spacing: 0px;
+}
+
+#MængdeberegningTabel th, #MængdeberegningTabel tr, #MængdeberegningTabel td {
+  border: 1px solid white; /* same as background or it do not work */
+  padding: 5px;
+}
+
+/* to turn of number inpu spin */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+
+
+#infotab {
+  float: left;
+  border-radius: 15px;
+  border: 1px solid white; /* same as background or it do not work */
+  text-align: right;
+  color: #1a1a1a;
+  background-color: #f2f2f2;
+  border-spacing: 0px;
+}
+
+#infotab th, #infotab tr, #infotab td {
+  border: 1px solid white; /* same as background or it do not work */
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+/* CALCULATOR POPUP START */
+{box-sizing: border-box;}
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  left: 28px;
+  width: 280px;
+}
+
+/* The popup chat - hidden by default */
+.calc-popup {
+  display: none;
+  position: fixed;
+  bottom: 70px;
+  left: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.calc-container {
+  max-width: 300px;
+  padding: 0px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.calc-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+}
+
+/* When the textarea gets focus, do something */
+.calc-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.calc-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.calc-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.calc-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+#calculator {
+    left: 28px;
+    width: 300px;
+    border-color: #f4f4f4;
+    background-color: white;
+}
+#calculator td {
+    width: 25%;
+}
+#calculator button {
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    background-color: white;
+    border: none;
+}
+#calculator button:hover {
+  background-color: #ececec;
+}
+#inputLabel {
+    height: 120px;
+    font-size: 40px;
+    vertical-align: bottom;
+    text-align: right;
+    padding-right: 16px;
+    background-color: #ececec;
+}
+/* CALCULATOR POPUP END

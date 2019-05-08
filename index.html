@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="dk" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+  <script type="text/javascript" src="./global.js"></script>
+  <script type="text/javascript" src="./molarmassCalc.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mængdeberegning</title>
+</head>
+<body>
+
+    <h1>
+        <p style="color: #93deff;">Mængdeberegning</p>
+    </h1>
+    <div w3-include-html="navbar.html" ></div>
+      <div class="middle">
+        <table id="infotab">
+          <tr>
+            <th>Størrelse</th>
+            <th>Symbol</th>
+          </tr>
+          <tr>
+            <td>Masse</td>
+            <td>m</td>
+          </tr>
+          <tr>
+            <td>Molærmasse</td>
+            <td>Mw</td>
+          </tr>
+          <tr>
+            <td>Stofmængde</td>
+            <td>n</td>
+          </tr>
+        </table>
+
+<!-- CALCULATOR POPUP START -->
+
+        <table id="MængdeberegningTabel" class="center">
+          <tr>
+            <th></th>
+            <th><input type="text" name="row0Column0" oninput="coreMolarCalcEngine(this);"></th>
+            <th class="small">+</th>
+            <th><input type="text" name="row0Column1" oninput="coreMolarCalcEngine(this);"></th>
+            <th class="small">&#10142;</th>
+            <th><input type="text" name="row0Column2" oninput="coreMolarCalcEngine(this);"></th>
+          </tr>
+          <tr>
+            <td>m</td>
+            <td><input type="number" name="row1Column0" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small"></th>
+            <td><input type="number" name="row1Column1" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small"></th>
+            <td><input type="number" name="row1Column2" oninput="coreMolarCalcEngine(this);"></td>
+          </tr>
+          <tr>
+            <td>Mw</td>
+            <td><input type="number" name="row2Column0" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small"></th>
+            <td><input type="number" name="row2Column1" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small"></th>
+            <td><input type="number" name="row2Column2" oninput="coreMolarCalcEngine(this);"></td>
+          </tr>
+          <tr>
+            <td>n</td>
+            <td><input type="number" name="row3Column0" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small"></th>
+            <td><input type="number" name="row3Column1" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small"></th>
+            <td><input type="number" name="row3Column2" oninput="coreMolarCalcEngine(this);"></td>
+          </tr>
+          <tr>
+            <td>Forhold</td>
+            <td><input type="number" name="row4Column0" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small">:</th>
+            <td><input type="number" name="row4Column1" oninput="coreMolarCalcEngine(this);"></td>
+            <th class="small">:</th>
+            <td><input type="number" name="row4Column2" oninput="coreMolarCalcEngine(this);"></td>
+          </tr>
+        </table>
+
+          <br><br><br><br><br>
+
+
+      </div>
+    <!-- CALCULATOR POPUP START --->
+  <button id="calcOpen"class="open-button" onclick="popupBtnPressed()" onclick="openForm()">Open calculator</button>
+  <div class="calc-popup" id="myForm" class="calc-container">
+
+      <table id="calculator" border="1" cellspacing="0" class="center">
+              <tr>
+                  <td colspan="4" id="inputLabel">0</td>
+              </tr>
+              <tr>
+                  <td colspan="3"><button onclick="pushBtn(this);">AC</button></td>
+                  <td><button onclick="pushBtn(this);">/</button></td>
+              </tr>
+              <tr>
+                  <td><button onclick="pushBtn(this);">7</button></td>
+                  <td><button onclick="pushBtn(this);">8</button></td>
+                  <td><button onclick="pushBtn(this);">9</button></td>
+                  <td><button onclick="pushBtn(this);">*</button></td>
+              </tr>
+              <tr>
+                  <td><button onclick="pushBtn(this);">4</button></td>
+                  <td><button onclick="pushBtn(this);">5</button></td>
+                  <td><button onclick="pushBtn(this);">6</button></td>
+                  <td><button onclick="pushBtn(this);">-</button></td>
+              </tr>
+              <tr>
+                  <td><button onclick="pushBtn(this);">1</button></td>
+                  <td><button onclick="pushBtn(this);">2</button></td>
+                  <td><button onclick="pushBtn(this);">3</button></td>
+                  <td><button onclick="pushBtn(this);">+</button></td>
+              </tr>
+              <tr>
+                  <td colspan="2"><button onclick="pushBtn(this);">0</button></td>
+                  <td><button onclick="pushBtn(this);">.</button></td>
+                  <td><button onclick="pushBtn(this);">=</button></td>
+              </tr>
+
+          </table>
+  </div>
+
+  </body>
+  <script>
+    //to the calculator
+    var inputLabel = document.getElementById('inputLabel');
+</script>
+<script>includeHTML();</script>
+</html>
