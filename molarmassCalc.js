@@ -3,7 +3,7 @@ function molarmasseCalculator(callingObject, targetName) {
     //number as first entry gets removed
     callingObject.value = callingObject.value.replace(/(^\d{1,40}(?=[A-Z])|(\((g|G)\)|\((s|S)\)|\((l|L)\)|\((aq|AQ|Aq|qA)\))\s*$|\s)/g, "")
   }/**/
-  temp = MWcalc(callingObject.value);
+  temp = MWcalc(document.getElementsByName(shiftRow(callingObject, 0))[0].value);
 
   if (temp["molarmass"] == "unkown chemical.") {
     document.getElementsByName(targetName).forEach(function(target) {
@@ -192,37 +192,83 @@ function MWparser(str) {
 }
 
 
-function shiftColumn(object, columnNumber){
+function shiftColumn(object, columnNumber) {
   if (typeof object == 'object') {
     object = object.name;
   }
-  var targetName = object.replace(/(row\d{1,2}Column)\d{1,2}/g, '$1'+columnNumber);
+  var targetName = object.replace(/(row\d{1,2}Column)\d{1,2}/g, '$1' + columnNumber);
   return targetName;
 }
-function shiftRow(object, rowNumber){
+
+function shiftRow(object, rowNumber) {
   if (typeof object == 'object') {
     object = object.name;
   }
-  var targetName = object.replace(/(row)\d{1,2}(Column\d{1,2})/g, '$1'+rowNumber+'$2');
+  var targetName = object.replace(/(row)\d{1,2}(Column\d{1,2})/g, '$1' + rowNumber + '$2');
   return targetName;
 }
 
-function coreMolarCalcEngine(callingObject){
-  molarmasseCalculator(callingObject,shiftRow(callingObject,2));
-  setRatio(callingObject,shiftRow(callingObject,4));
+function convertDecimal(number, decimalSymbol) {
+  var string = number.toString().replace(/(\.|\,)/g, decimalSymbol)
+  var number = Number(string);
+  if (number.toString() == 'NaN') {
+    return string
+  } else {
+    return number
+  }
 }
 
-function setRatio(callingObject, targetName){ // henter det første tal ind.
-  var ratio = function(){
-    if (/^(\d{1,9})/.test(callingObject.value)) {
-      return /^(\d{1,9})/.exec(callingObject.value)[1];
+function setRatio(callingObject, targetName) { // henter det første tal ind.
+  var formular = document.getElementsByName(shiftRow(callingObject, 0))[0].value;
+  var ratio = function() {
+    if (/^(\d{1,9})/.test(formular)) {
+      return /^(\d{1,9})/.exec(formular)[1];
     } else {
       return 1
     }
   }();
-  console.log(ratio);
   //.replace(/^(\d{1,})*./g,'$1');
   document.getElementsByName(targetName).forEach(function(target) {
     target.value = ratio;
   });
+}
+
+function setMolFromMass(callingObject, targetName) {
+  var mass = convertDecimal(document.getElementsByName(shiftRow(callingObject, 1))[0].value,'.');
+  var molarWeight = convertDecimal(document.getElementsByName(shiftRow(callingObject, 2))[0].value,'.');
+  var mol = mass / molarWeight;
+  document.getElementsByName(targetName).forEach(function(target) {
+    target.value = convertDecimal(mol,',');
+  });
+}
+
+function setMolFromOther(callingObject, targetName) {
+  var parentMol = convertDecimal(document.getElementsByName('row3Column0')[0].value,'.');
+  var parentRatio = convertDecimal(document.getElementsByName('row4Column0')[0].value,'.');
+  var childRatio = convertDecimal(document.getElementsByName(shiftRow(callingObject, 4))[0].value,'.');
+  var mol = (parentMol / parentRatio) * childRatio;
+  document.getElementsByName(targetName).forEach(function(target) {
+    target.value = convertDecimal(mol,',');
+  });
+}
+
+function setMass(callingObject, targetName) {
+  var mol = convertDecimal(document.getElementsByName(shiftRow(callingObject, 3))[0].value,'.');
+  var molarWeight = convertDecimal(document.getElementsByName(shiftRow(callingObject, 2))[0].value,'.');
+  var mass = mol * molarWeight;
+  document.getElementsByName(targetName).forEach(function(target) {
+    target.value = convertDecimal(mass,',');
+  });
+}
+
+function coreMolarCalcEngine(callingObject) {
+  molarmasseCalculator(callingObject, shiftRow(callingObject, 2));
+  setRatio(callingObject, shiftRow(callingObject, 4));
+  setMolFromMass(document.getElementsByName('row0Column0')[0], 'row3Column0');
+
+  for (var i = 1; i < 3; i++) {
+    var formularObject = document.getElementsByName(shiftColumn('row0Column1',i))[0];
+    setMolFromOther(formularObject, shiftColumn('row3Column1',i));
+    setMass(formularObject, shiftColumn('row1Column1',i));
+  }
 }
