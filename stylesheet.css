@@ -100,7 +100,10 @@ input[type=number]::-webkit-outer-spin-button {
 margin: 0;
 }
 
-
+input.activeInput{
+  border-color: #A3DDFB;
+  border-width: medium;
+}
 
 #infotab {
   float: left;
